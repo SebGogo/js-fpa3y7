@@ -1,1 +1,69 @@
-<div id="app"></div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Ensures the viewer works best across various browsers and devices -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no" />
+
+    <!-- CSS required by the viewer -->
+    <link rel="stylesheet" href="viewer-assets/css/normalize.min.css">
+    <link rel="stylesheet" href="viewer-assets/css/viewer.css">
+
+    <!-- JS required by the viewer -->
+    <script src="viewer-assets/js/jquery-3.4.1.min.js"></script>
+    <script src="viewer-assets/js/jquery.hotkeys.min.js"></script>
+    <script src="viewer-assets/js/underscore.min.js"></script>
+    <script src="viewer-assets/js/viewercontrol.js"></script>
+    <script src="viewer-assets/js/viewer.js"></script>
+    <script src="viewer-assets/js/viewerCustomizations.js"></script>
+    <title>PrizmDoc Viewer</title>
+</head>
+
+<body>
+    <!-- Step 1 -->
+    <div style="width: 1000px; margin: auto;">
+        <h1>Step 1</h1>
+        <p>HTTP POST request to create viewing session ID</p>
+        <pre>
+    POST https://api.accusoft.com/prizmdoc/ViewingSession
+    Acs-Api-Key: YOUR_API_KEY
+    Content-Type: application/json
+    
+    {
+        "source": {
+            "type": "upload",
+            "displayName": "UNIQUE_NAME_OF_THE_DOCUMENT_TO_BE_VIEWED"
+        }
+    }</pre>
+        <button type="button" id="btnFetch">Get viewing session ID</button>
+        <br><br>
+        <div id="sessionResponse"></div>
+        <br><br>
+        <div id="testResponse"></div>
+
+        <!-- Step 2 -->
+        <div style="width: 1000px; margin: auto;">
+            <h1>Step 2</h1>
+            <p>HTTP POST request to upload document with viewing session ID</p>
+            <pre>
+        POST https://api.accusoft.com/prizmdoc/ViewingSession
+        Acs-Api-Key: YOUR_API_KEY
+        Content-Type: application/json
+        
+        {
+            "source": {
+                "type": "upload",
+                "displayName": "UNIQUE_NAME_OF_THE_DOCUMENT_TO_BE_VIEWED"
+            }
+        }</pre>
+            <input type="file" id="fileUpload" />
+        </div>
+        <!-- Embed PrizmDoc Viewer -->
+        <div id="viewerContainer" style="height: 800px; width: auto; margin: 10px 10px;"></div>
+        <script src="main.js"></script>
+</body>
+
+</html>
